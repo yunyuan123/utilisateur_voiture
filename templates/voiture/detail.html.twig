@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DetailVoitureController!{% endblock %}
+
+{% block contenu %}
+{% if voiture is defined %}
+
+    {% if voiture is not empty %}
+    {{ voiture.id }} -- {{ voiture.model }}
+    {% endif %}
+{% endif %}
+
+{% if liste_composition is defined %}
+
+    {% if liste_composition is not empty %}
+        <p> Liste de composant </p>
+        <ul>
+        {% for composition in liste_composition %}
+            <li> {{ composition.composant.id }} -- {{ composition.composant.label }} </li>
+    {% endfor %}
+        </ul>
+    {% endif %}
+{% endif %}
+{% endblock %}

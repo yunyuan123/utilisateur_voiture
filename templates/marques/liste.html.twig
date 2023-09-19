@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MarquesController!{% endblock %}
+
+{% block contenu %}
+    {% if marques is defined %}
+
+    {% if marques is not empty %}
+
+        <ul>
+            {% for marque in marques %}
+                <li> {{ marque.id }} -- {{ marque.label }}
+                --<a href="{{path("app_voiture_marque", {"marque":marque.id})}}">Les voiture de la marque</a> </li>
+            {% endfor %}
+        </ul>
+
+        {% else %}
+            <p> Aucune marque à disposition</p>
+        {% endif %}
+
+    {% endif %}
+
+{% endblock %}

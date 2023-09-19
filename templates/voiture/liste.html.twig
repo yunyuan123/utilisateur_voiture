@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ListeVoituresController!{% endblock %}
+
+{% block contenu %}
+
+{% if voitures is defined %}
+
+    {% if voitures is not empty %}
+
+        <ul>
+            {% for voiture in voitures %}
+                <li> {{ voiture.id }} -- {{ voiture.model }} 
+                -- <a href="{{ path("app_detail_voiture", {"voiture":voiture.id}) }}"> Detail </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+        <p> Aucune voiture à disposition</p>
+    {% endif %}
+
+{% endif %}
+
+{% endblock %}
