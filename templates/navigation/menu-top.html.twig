@@ -1,4 +1,10 @@
 <nav>
     <a href="{{ path("app_liste_voitures") }}"> Les voitures </a>
     <a href="{{ path("app_marques") }}"> Les marques </a>
+        {% if is_granted('ROLE_USER') %}
+        <a href=" {{ path('app_logout') }}">Se déconnecter</a>
+    {% else %}
+        <a href=" {{ path('app_register') }}">S'inscrire</a>
+        <a href=" {{ path('app_login') }}">Se connecter</a>
+    {% endif %}
 </nav>
