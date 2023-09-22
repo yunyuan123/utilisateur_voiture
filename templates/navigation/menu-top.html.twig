@@ -1,8 +1,12 @@
 <nav>
     <a href="{{ path("app_liste_voitures") }}"> Les voitures </a>
     <a href="{{ path("app_marques") }}"> Les marques </a>
-        {% if is_granted('ROLE_USER') %}
+    {% if is_granted('ROLE_UTILISATEUR') %}
         <a href=" {{ path('app_logout') }}">Se déconnecter</a>
+        {# // liéme maniére de definir le fait de gérer les roles utilisateur => accéder que controller admin#}
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href=" {{ path('app_admin') }}">Admin</a>
+        {% endif %}
     {% else %}
         <a href=" {{ path('app_register') }}">S'inscrire</a>
         <a href=" {{ path('app_login') }}">Se connecter</a>

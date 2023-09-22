@@ -3,5 +3,10 @@
 {% block title %}Hello AdminController!{% endblock %}
 
 {% block contenu %}
-    Je suis dispo uniquement par les admins
+    {% if is_granted("ROLE_ADMIN") %}
+    <p> je suis l'admin
+{% else %}
+    <p> vous n'avez pas le role adequat </p>
+{% endif %}
+
 {% endblock %}

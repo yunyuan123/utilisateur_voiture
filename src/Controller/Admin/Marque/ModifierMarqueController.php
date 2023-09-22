@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Marque;
+namespace App\Controller\Admin\Marque;
 
 use App\Entity\Marque;
 use App\Form\MarqueType;
@@ -12,24 +12,25 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/les/marque')]
-class CreateMarqueController extends AbstractController
+class ModifierMarqueController extends AbstractController
 {
-    #[Route('/new', name: 'app_les_marque_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    
+    #[Route('/{id}/edit', name: 'app_les_marque_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Marque $marque, EntityManagerInterface $entityManager): Response
     {
-        $marque = new Marque();
         $form = $this->createForm(MarqueType::class, $marque);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($marque);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_les_marque_index', [], Response::HTTP_SEE_OTHER);
         }
-        return $this->render('les_marque/new.html.twig', [
+
+        return $this->render('les_marque/edit.html.twig', [
             'marque' => $marque,
             'form' => $form,
         ]);
     }
+
 }
