@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ListeCompositionController extends AbstractController
 {
     #[Route('/', name: 'app_liste_composition_index', methods: ['GET'])]
+    #[IsGranted("ROLE_ADMIN")]
     public function index(CompositionRepository $compositionRepository): Response
     {
         return $this->render('liste_composition/index.html.twig', [

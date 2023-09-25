@@ -40,8 +40,10 @@ security:
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/profil, roles: ROLE_UTILISATEUR }
+         - { path: ^/super, roles: ROLE_SUPER_ADMIN }
     role_hierarchy:
         ROLE_ADMIN:     ROLE_UTILISATEUR
+        ROLE_SUPER_ADMIN:   ROLE_ADMIN
         
 
 when@test:

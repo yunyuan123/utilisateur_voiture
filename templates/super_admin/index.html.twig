@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SuperAdminController!{% endblock %}
+
+{% block contenu %}
+    {% if is_granted("ROLE_SUPER_ADMIN") %}
+    <ul>
+    {% for utilisateur in utilisateurs %}
+        <li>
+        {{ utilisateur.id }} -- {{ utilisateur.email }}
+        <a href="{{  path("app_ajoute_role_admin", {'utilisateur':utilisateur.id})}}">Ajouter Role Admin</a>
+        <a href="{{ path("app_ajoute_role_super_admin", {"utilisateur":utilisateur.id})}}">Ajouter Role Super Admin</a>
+        </li>
+    </ul>
+        
+    {% endfor %}
+    {% else %}
+    tu n'as rien a faire là
+    {% endif %}
+{% endblock %}
